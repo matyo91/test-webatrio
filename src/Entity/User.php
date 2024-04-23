@@ -18,11 +18,9 @@ class User
     #[ORM\Column]
     private ?int $id = null;
 
-    #[Assert\NotBlank(groups: ["default", "create"])]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $name = null;
 
-    #[Assert\NotBlank(groups: ["default", "create"])]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $firstname = null;
 
@@ -32,7 +30,7 @@ class User
     /**
      * @var Collection<int, Job>
      */
-    #[ORM\OneToMany(targetEntity: Job::class, mappedBy: 'appUser')]
+    #[ORM\OneToMany(targetEntity: Job::class, mappedBy: 'appUser', cascade: ["persist", "remove"])]
     private Collection $jobs;
 
     public function __construct()

@@ -15,7 +15,7 @@ class Job
     private ?int $id = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $compagny = null;
+    private ?string $company = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $dateBegin = null;
@@ -26,19 +26,22 @@ class Job
     #[ORM\ManyToOne(inversedBy: 'jobs')]
     private ?User $appUser = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $role = null;
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getCompagny(): ?string
+    public function getCompany(): ?string
     {
-        return $this->compagny;
+        return $this->company;
     }
 
-    public function setCompagny(?string $compagny): static
+    public function setCompany(?string $company): static
     {
-        $this->compagny = $compagny;
+        $this->company = $company;
 
         return $this;
     }
@@ -75,6 +78,18 @@ class Job
     public function setAppUser(?User $appUser): static
     {
         $this->appUser = $appUser;
+
+        return $this;
+    }
+
+    public function getRole(): ?string
+    {
+        return $this->role;
+    }
+
+    public function setRole(?string $role): static
+    {
+        $this->role = $role;
 
         return $this;
     }
